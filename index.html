@@ -39,7 +39,8 @@
             <a href="mailto:info@devstudio.com"><svg class="icon" width="16" height="11">
                 <use href="./img/sprite.svg#icon-envelope"></use>
               </svg>
-              info@devstudio.com</a>
+              info@devstudio.com
+            </a>
           </li>
           <li class="add-li">
       
@@ -59,7 +60,21 @@
       <section class="hero">
         
        <h1 class="hero-title">Эффективные решения</br> для вашего бизнеса</h1>
-       <button class="button-styles" type="button">Заказать услугу</button>
+       <button data-open-modal class="button-styles" type="button">Заказать услугу</button>
+       <div class="backdrop is-hidden" data-backdrop>
+         <div class="modal">
+          <b>Оставьте свои данные, мы вам перезвоним</b>
+         <form class="form js-speaker-form">
+           <label for="name">Имя</label>
+           <input type="text" id="name">
+           <label for="tel">Телефон</label>
+           <input type="tel" id="tel">
+           <label for="mail">Почта</label>
+           <input type="email" id="mail">
+            <button data-close-modal class="button-styles" type="submit">Отправить</button>
+         </form>
+         </div>
+       </div>
        
       </section>
       <!-- Features -->
@@ -350,11 +365,12 @@
           </section> -->
          </div>
        
-
           <div><p class="end">2020 | Developed by GoIT Students</p></div>
         </section>
       </div>
     </footer>
+
+
     <script>
       const { height: pageHeaderHeight } = document
         .querySelector(".main-nav")
@@ -362,5 +378,41 @@
 
       document.body.style.paddingTop = `${pageHeaderHeight}px`;
     </script>
+    <script>
+      const refs = {
+        openModalBtn: document.querySelector('[data-open-modal]'),
+        closeModalBtn: document.querySelector('[data-close-modal]'),
+        backdrop: document.querySelector('[data-backdrop]'),
+      };
+
+      refs.openModalBtn.addEventListener('click', toggleModal);
+      refs.closeModalBtn.addEventListener('click', toggleModal);
+
+      refs.backdrop.addEventListener('click', logBackdropClick);
+
+      function toggleModal() {
+        refs.backdrop.classList.toggle('is-hidden');
+      }
+
+      function logBackdropClick() {
+        console.log('Это клик в бекдроп');
+      }
+    </script>
+    <script>
+      (() => {
+        document
+          .querySelector('.js-speaker-form')
+          .addEventListener('submit', e => {
+            e.preventDefault();
+
+            new FormData(e.currentTarget).forEach((value, name) =>
+              console.log(`${name}: ${value}`),
+            );
+
+            e.currentTarget.reset();
+          });
+      })();
+    </script>
   </body>
+
 </html>

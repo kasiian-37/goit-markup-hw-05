@@ -143,6 +143,7 @@ section {
 .link .nav-li:not(:last-child) {
   margin-right: 50px;
 }
+
 .adress-header {
   margin-left: auto;
 
@@ -163,15 +164,12 @@ section {
   display: flex;
   padding-top: 32px;
   padding-bottom: 32px;
-
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .add-li a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .add-li .icon {
   margin-right: 10px;
@@ -210,26 +208,24 @@ section {
 /*Button*/
 .button-styles {
   display: inline-block;
+  align-items: center;
   border-radius: 4px;
   border-style: none;
-
+  width: 200px;
+  height: 50px;
   background-color: var(--accent-color);
   color: var(--primary-white-color);
   border: 1px solid transparent;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 32px;
-  padding-right: 32px;
-
+  padding: 0px;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.06em;
 
-  /* transition-property: var(--backgraund-color);
+  transition-property: var(--backgraund-color);
   transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button-styles:hover,
 .button-styles:focus {
@@ -237,7 +233,42 @@ section {
   background-color: var(--primary-white-color);
   border-color: 1px solid var(--accent-color);
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.2);
 
+  opacity: 1;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 528px;
+  height: 581px;
+
+  background-color: #fff;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 1px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 /*Features*/
 .section-features {
   padding-top: 94px;
@@ -591,7 +622,7 @@ b {
 .project-elements {
   display: flex;
   justify-content: center;
-  width: 370px;
+  width: calc((100% - 60px) / 3);
   border: 1px solid #eeeeee;
   box-sizing: border-box;
 
@@ -613,8 +644,8 @@ b {
     0px 1px 1px rgba(0, 0, 0, 0.12);
 }
 .project-elements a:focus {
-  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    0px 1px 1px rgba(0, 0, 0, 0.12);
+  box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.2), 0px 6px 6px rgba(0, 0, 0, 0.08),
+    0px 1px 1px rgba(0, 0, 0, 0.16);
 }
 .project-title {
   padding-top: 20px;
@@ -669,9 +700,7 @@ b {
   padding-left: 24px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* .project-position .project-text-link:hover {
-  opacity: 1;
-} */
+
 .project-elements:hover .overlay {
   transform: translateY(0%);
 }
